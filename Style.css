@@ -251,3 +251,153 @@ section{
 transition:.8s ease;
 
 }
+/* Statistics */
+
+.stat{
+
+background:#1e293b;
+
+padding:30px;
+
+border-radius:20px;
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.stat:hover{
+
+transform:translateY(-8px);
+
+}
+
+.stat h1{
+
+font-size:55px;
+
+color:#38bdf8;
+
+}
+
+/* Projects */
+
+.project img{
+
+width:100%;
+
+border-radius:15px;
+
+margin-bottom:20px;
+
+height:220px;
+
+object-fit:cover;
+
+}
+
+.tech{
+
+display:flex;
+
+gap:10px;
+
+flex-wrap:wrap;
+
+margin-top:15px;
+
+}
+
+.tech span{
+
+background:#38bdf8;
+
+padding:8px 14px;
+
+border-radius:20px;
+
+color:#0f172a;
+
+font-weight:600;
+
+}
+
+/* Contact */
+
+.contact-container{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:40px;
+
+margin-top:40px;
+
+}
+
+.contact-form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.contact-form input,
+.contact-form textarea{
+
+padding:18px;
+
+border:none;
+
+border-radius:10px;
+
+background:#1e293b;
+
+color:white;
+
+}
+
+.contact-form textarea{
+
+height:180px;
+
+resize:none;
+
+}
+
+.contact-form button{
+
+padding:18px;
+
+border:none;
+
+border-radius:10px;
+
+background:#38bdf8;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.contact-form button:hover{
+
+background:#0ea5e9;
+
+}
+
+@media(max-width:900px){
+
+.contact-container{
+
+grid-template-columns:1fr;
+
+}
+
+}
