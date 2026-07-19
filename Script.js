@@ -1,225 +1,149 @@
+
 /* ======================================
    SHEDRACK WAEMA PORTFOLIO
-   script.js
+   Premium JavaScript
 ====================================== */
 
-// =======================
-// Typing Animation
-// =======================
+// ===== Typing Animation =====
 
-const titles = [
-    "Electrical Engineer",
-    "Software Developer",
-    "Technology Enthusiast",
-    "Problem Solver"
+const roles = [
+  "Electrical Engineer",
+  "Software Developer",
+  "Technology Enthusiast",
+  "Problem Solver"
 ];
 
-const heading = document.querySelector(".hero h2");
+const roleElement = document.querySelector(".hero h2");
 
-let titleIndex = 0;
-let charIndex = 0;
+let roleIndex = 0;
+let letterIndex = 0;
 let deleting = false;
 
-function typeWriter() {
+function typingAnimation() {
+  const currentRole = roles[roleIndex];
 
-    const current = titles[titleIndex];
+  if (!deleting) {
+    roleElement.textContent = currentRole.substring(0, letterIndex++);
+  } else {
+    roleElement.textContent = currentRole.substring(0, letterIndex--);
+  }
 
-    if (!deleting) {
-        heading.textContent = current.substring(0, charIndex++);
-    } else {
-        heading.textContent = current.substring(0, charIndex--);
-    }
+  let speed = deleting ? 60 : 120;
 
-    let speed = deleting ? 60 : 120;
+  if (!deleting && letterIndex > currentRole.length) {
+    deleting = true;
+    speed = 1500;
+  }
 
-    if (!deleting && charIndex > current.length) {
-        deleting = true;
-        speed = 1500;
-    }
+  if (deleting && letterIndex < 0) {
+    deleting = false;
+    roleIndex = (roleIndex + 1) % roles.length;
+  }
 
-    if (deleting && charIndex < 0) {
-        deleting = false;
-        titleIndex++;
-
-        if (titleIndex >= titles.length) {
-            titleIndex = 0;
-        }
-    }
-
-    setTimeout(typeWriter, speed);
-
+  setTimeout(typingAnimation, speed);
 }
 
-typeWriter();
+typingAnimation();
 
 
-// =======================
-// Scroll Reveal
-// =======================
+// ===== Reveal Sections =====
 
-const sections = document.querySelectorAll("section");
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, {
+  threshold: 0.2
+});
 
-const reveal = () => {
+document.querySelectorAll("section").forEach(section => {
+  observer.observe(section);
+});
 
-    sections.forEach(section => {
 
-        const top = section.getBoundingClientRect().top;
+// ===== Back to Top Button =====
 
-        if (top < window.innerHeight - 120) {
+const topButton = document.createElement("button");
 
-            section.style.opacity = "1";
-            section.style.transform = "translateY(0)";
+topButton.innerHTML = "↑";
+topButton.className = "top-btn";
 
-        }
+document.body.appendChild(topButton);
 
-    });
+window.addEventListener("scroll", () => {
+
+  if (window.scrollY > 500) {
+
+    topButton.classList.add("show");
+
+  } else {
+
+    topButton.classList.remove("show");
+
+  }
+
+});
+
+topButton.onclick = () => {
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior: "smooth"
+
+  });
 
 };
 
-sections.forEach(section => {
 
-    section.style.opacity = "0";
-    section.style.transform = "translateY(60px)";
-    section.style.transition = ".8s";
+// ===== Active Navigation =====
 
-});
-
-window.addEventListener("scroll", reveal);
-window.addEventListener("load", reveal);
-
-
-// =======================
-// Scroll Progress Bar
-// =======================
-
-const progress = document.createElement("div");
-
-progress.style.position = "fixed";
-progress.style.top = "0";
-progress.style.left = "0";
-progress.style.height = "4px";
-progress.style.background = "#38bdf8";
-progress.style.width = "0";
-progress.style.zIndex = "9999";
-
-document.body.appendChild(progress);
+const navLinks = document.querySelectorAll("nav a");
+const sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll", () => {
 
-    const total =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+  let current = "";
 
-    const current =
-        document.documentElement.scrollTop;
+  sections.forEach(section => {
 
-    progress.style.width =
-        (current / total) * 100 + "%";
+    const sectionTop = section.offsetTop - 120;
 
-});
+    if (window.scrollY >= sectionTop) {
 
-
-// =======================
-// Back To Top Button
-// =======================
-
-const topBtn = document.createElement("button");
-
-topBtn.innerHTML = "↑";
-
-topBtn.style.position = "fixed";
-topBtn.style.right = "25px";
-topBtn.style.bottom = "25px";
-topBtn.style.width = "55px";
-topBtn.style.height = "55px";
-topBtn.style.borderRadius = "50%";
-topBtn.style.border = "none";
-topBtn.style.background = "#38bdf8";
-topBtn.style.color = "#0f172a";
-topBtn.style.fontSize = "22px";
-topBtn.style.cursor = "pointer";
-topBtn.style.display = "none";
-topBtn.style.boxShadow = "0 10px 25px rgba(0,0,0,.4)";
-
-document.body.appendChild(topBtn);
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 400) {
-
-        topBtn.style.display = "block";
-
-    } else {
-
-        topBtn.style.display = "none";
+      current = section.getAttribute("id");
 
     }
 
-});
+  });
 
-topBtn.onclick = () => {
+  navLinks.forEach(link => {
 
-    window.scrollTo({
+    link.classList.remove("active");
 
-        top: 0,
+    if (link.getAttribute("href") === "#" + current) {
 
-        behavior: "smooth"
+      link.classList.add("active");
 
-    });
+    }
 
-};
-
-
-// =======================
-// Active Navigation
-// =======================
-
-const navLinks = document.querySelectorAll("nav a");
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        if (window.scrollY >= section.offsetTop - 150) {
-
-            current = section.getAttribute("id");
-
-        }
-
-    });
-
-    navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
-
-            link.classList.add("active");
-
-        }
-
-    });
+  });
 
 });
 
 
-// =======================
-// Footer Year
-// =======================
+// ===== Footer Year =====
 
 const footer = document.querySelector("footer p");
 
-footer.innerHTML =
-`© ${new Date().getFullYear()} Shedrack Waema | Electrical Engineer & Software Developer`;
+if (footer) {
 
+  footer.innerHTML =
+    `© ${new Date().getFullYear()} Shedrack Waema | Electrical Engineer & Software Developer`;
 
-// =======================
-// Console Welcome Message
-// =======================
+}
 
-console.log(
-"%cWelcome to Shedrack Waema's Portfolio",
-"color:#38bdf8;font-size:18px;font-weight:bold;"
-);
+console.log("Portfolio Loaded Successfully");
