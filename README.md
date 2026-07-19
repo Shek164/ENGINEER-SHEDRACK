@@ -9,7 +9,7 @@ This website showcases my background, skills, experience, and projects as an **E
 
 ## 🚀 Live Website
 
-After enabling GitHub Pages, your portfolio will be available at:
+my portfolio is available on
 
 https://shek164.github.io/Gilton1/
 
