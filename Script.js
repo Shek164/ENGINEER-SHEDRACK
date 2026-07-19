@@ -210,5 +210,43 @@ e.preventDefault();
 alert("Thank you for your message!");
 
 });
+/* ===== Loader ===== */
 
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.display="none";
+
+},1200);
+
+});
+
+/* ===== Mobile Menu ===== */
+
+const menu=document.querySelector(".menu-btn");
+
+const nav=document.getElementById("navbar");
+
+if(menu){
+
+menu.onclick=()=>{
+
+nav.classList.toggle("active");
+
+};
+
+}
+
+/* ===== Close Menu After Clicking ===== */
+
+document.querySelectorAll("#navbar a").forEach(link=>{
+
+link.onclick=()=>{
+
+nav.classList.remove("active");
+
+};
+
+});
 }
