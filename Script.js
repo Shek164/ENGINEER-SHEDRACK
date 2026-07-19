@@ -147,3 +147,68 @@ if (footer) {
 }
 
 console.log("Portfolio Loaded Successfully");
+/* Animated Counters */
+
+const counters = document.querySelectorAll(".counter");
+
+const counterObserver = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+
+const counter = entry.target;
+
+const target = +counter.dataset.target;
+
+let count = 0;
+
+const update = () => {
+
+count += target / 100;
+
+if(count < target){
+
+counter.innerText = Math.floor(count);
+
+requestAnimationFrame(update);
+
+}else{
+
+counter.innerText = target;
+
+}
+
+};
+
+update();
+
+counterObserver.unobserve(counter);
+
+}
+
+});
+
+});
+
+counters.forEach(counter=>{
+
+counterObserver.observe(counter);
+
+});
+
+/* Contact Form */
+
+const form=document.querySelector(".contact-form");
+
+if(form){
+
+form.addEventListener("submit",(e)=>{
+
+e.preventDefault();
+
+alert("Thank you for your message!");
+
+});
+
+}
