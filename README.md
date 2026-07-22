@@ -9,7 +9,7 @@ This website showcases my background, skills, experience, and projects as an **E
 
 ## 🚀 Live Website
 
-here is my code
+view live demo
 
 https://shek164.github.io/Gilton1/
 
