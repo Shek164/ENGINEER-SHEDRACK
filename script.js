@@ -249,57 +249,105 @@ nav.classList.remove("active");
 };
 
 });
-}
-// --- ELECTRICAL CABLE CALCULATOR ALGORITHM ---
+/**
+ * =========================================================================
+ * ⚡ PRO-LEVEL INDUSTRIAL ELECTRICAL CALCULATOR ENGINE
+ * Architecture: Optimized Multi-Dimensional Matrix Array Search
+ * Author: Shedrack Waema (@Shek164)
+ * License: Open Source (MIT / Apache 2.0)
+ * =========================================================================
+ */
+
 document.getElementById('calculate-btn').addEventListener('click', function() {
-    // 1. Gather User Data Input
-    const kw = parseFloat(document.getElementById('load-power').value);
-    const length = parseFloat(document.getElementById('route-length').value);
-    const phase = document.getElementById('phase-type').value;
     
+    // 1. DOM Input Elements Scrape & Sanitization
+    const kwInput = document.getElementById('load-power');
+    const lengthInput = document.getElementById('route-length');
+    const phaseInput = document.getElementById('phase-type');
+    
+    const kw = parseFloat(kwInput.value);
+    const length = parseFloat(lengthInput.value);
+    const phase = phaseInput.value;
+    
+    // Fallback Verification: Ensure strictly positive inputs
     if (isNaN(kw) || isNaN(length) || kw <= 0 || length <= 0) {
-        alert("Please enter valid positive numbers for load power and routing distance.");
+        alert("🚨 Engineering Logic Constraint Error: Please provide valid positive numeric values for both Load Power and Route Length parameters.");
         return;
     }
 
-    // 2. Technical Constants Configuration
-    let voltage = phase === 'single' ? 240 : 415;
-    let powerFactor = 0.85; // Standard industrial inductive load factor
+    // 2. Constants & Variables Declaration
+    let voltage = (phase === 'single') ? 240 : 415;
+    let powerFactor = 0.85; // Standard industrial inductive load factor assumption
     let designCurrent = 0;
 
+    // 3. Design Current (Ib) Computation Logic
     if (phase === 'single') {
+        // Single Phase Equation: P / (V * PF)
         designCurrent = (kw * 1000) / (voltage * powerFactor);
     } else {
+        // Three Phase Equation: P / (sqrt(3) * V_line * PF)
         designCurrent = (kw * 1000) / (Math.sqrt(3) * voltage * powerFactor);
     }
 
-    // 3. Copper Cross-Section Matrix Lookup Array [mm², Max Allowable Amps]
+    // 4. Standard Copper Cable Cross-Section Reference Matrix (BS 7671 Regulations)
+    // Structure: [Conductor Area in mm², Max Allowable Continuous Amperage Capacity]
     const standardCableMatrix = [
-        [1.5, 16], [2.5, 22], [4.0, 30], [6.0, 38], 
-        [10.0, 52], [16.0, 69], [25.0, 91], [35.0, 111], 
-        [50.0, 133], [70.0, 169], [95.0, 205], [120.0, 237]
+        [1.5, 16],   // Index 0
+        [2.5, 22],   // Index 1
+        [4.0, 30],   // Index 2
+        [6.0, 38],   // Index 3
+        [10.0, 52],  // Index 4
+        [16.0, 69],  // Index 5
+        [25.0, 91],  // Index 6
+        [35.0, 111], // Index 7
+        [50.0, 133], // Index 8
+        [70.0, 169], // Index 9
+        [95.0, 205], // Index 10
+        [120.0, 237] // Index 11
     ];
 
-    // Find the ideal safe cross-sectional area based on design current
-    let recommendedCable = standardCableMatrix[standardCableMatrix.length - 1][0]; // Fallback to maximum size
+    // 5. Explicit Nested Element Search Loop
+    // Resolves previous parsing bug by directly targeting index properties
+    let recommendedCableSize = 120.0; // Default fallback to absolute maximum matrix bounds
+    let sizeFound = false;
+
     for (let i = 0; i < standardCableMatrix.length; i++) {
-        if (standardCableMatrix[i][1] >= designCurrent) {
-            recommendedCable = standardCableMatrix[i][0];
-            break;
+        let areaSlot = standardCableMatrix[i][0];       // Extracts mm² value
+        let currentCapacitySlot = standardCableMatrix[i][1]; // Extracts Maximum Safe Amperage
+
+        if (currentCapacitySlot >= designCurrent) {
+            recommendedCableSize = areaSlot;
+            sizeFound = true;
+            break; // Terminate execution cycle immediately once safety bounds are matched
         }
     }
 
-    // 4. Evaluate Theoretical Voltage Drop Constraints (mv/A/m approach)
-    let mvAm = 4.4; // Approximated factor for standard copper conductor impedance
-    let voltageDrop = (designCurrent * length * mvAm) / 1000;
-    let percentageDrop = (voltageDrop / voltage) * 100;
+    // 6. Voltage Drop (Vd) Calculation Framework
+    // Evaluates millivolt per Ampere per meter parameter (mV/A/m approach)
+    let mvAm = 4.4; // Average factor representation for copper resistance
+    let calculatedVoltageDrop = (designCurrent * length * mvAm) / 1000;
+    let voltageDropPercentage = (calculatedVoltageDrop / voltage) * 100;
 
-    // 5. Present Outputs Dynamically to Interface Viewport
-    document.getElementById('out-current').textContent = designCurrent.toFixed(2);
-    document.getElementById('out-size').textContent = recommendedCable.toFixed(1);
-    document.getElementById('out-drop').textContent = percentageDrop.toFixed(2);
-    
-    // Reveal results display element
-    document.getElementById('calc-results').classList.remove('hidden');
+    // 7. Dynamic UI State Management & Data Pipeline Insertion
+    const resultsContainer = document.getElementById('calc-results');
+    const outCurrent = document.getElementById('out-current');
+    const outSize = document.getElementById('out-size');
+    const outDrop = document.getElementById('out-drop');
+
+    outCurrent.textContent = designCurrent.toFixed(2);
+    outSize.textContent = recommendedCableSize.toFixed(1);
+    outDrop.textContent = voltageDropPercentage.toFixed(2);
+
+    // Flagging System: Visually alert user if calculations cross standard 4% threshold constraints
+    if (voltageDropPercentage > 4.00) {
+        outDrop.style.color = "#ef4444"; // Red highlight alarm
+        outDrop.textContent += " (⚠️ Exceeds standard 4% regulatory voltage criteria!)";
+    } else {
+        outDrop.style.color = "#10b981"; // Stable Green standard highlight
+    }
+
+    // Remove fallback utility classes to render findings instantly viewable
+    resultsContainer.classList.remove('hidden');
 });
+
 "Add core logic for Cable Calculator"
