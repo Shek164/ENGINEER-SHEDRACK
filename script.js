@@ -351,3 +351,68 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
 });
 
 "Add core logic for Cable Calculator"
+// --- OHM'S LAW MATRIX CALCULATION LOGIC ---
+document.getElementById('ohms-calculate-btn').addEventListener('click', function() {
+    // 1. Gather all four parameter states
+    let v = parseFloat(document.getElementById('ohms-v').value);
+    let i = parseFloat(document.getElementById('ohms-i').value);
+    let r = parseFloat(document.getElementById('ohms-r').value);
+    let p = parseFloat(document.getElementById('ohms-p').value);
+
+    // 2. Count how many valid parameters the user actually entered
+    let inputsCount = 0;
+    if (!isNaN(v) && v > 0) inputsCount++;
+    if (!isNaN(i) && i > 0) inputsCount++;
+    if (!isNaN(r) && r > 0) inputsCount++;
+    if (!isNaN(p) && p > 0) inputsCount++;
+
+    // Fallback Verification: Check constraints
+    if (inputsCount < 2) {
+        alert("🚨 Engineering Logic Error: You must fill in exactly TWO fields to calculate the missing values.");
+        return;
+    }
+
+    // 3. Mathematical Condition Matrix Loop (Solving for all variations)
+    // Run equations continuously until all values are resolved
+    for (let loop = 0; loop < 2; loop++) {
+        // Case A: Solve using Voltage and Current
+        if (!isNaN(v) && !isNaN(i)) {
+            if (isNaN(r)) r = v / i;
+            if (isNaN(p)) p = v * i;
+        }
+        // Case B: Solve using Voltage and Resistance
+        if (!isNaN(v) && !isNaN(r)) {
+            if (isNaN(i)) i = v / r;
+            if (isNaN(p)) p = (v * v) / r;
+        }
+        // Case C: Solve using Voltage and Power
+        if (!isNaN(v) && !isNaN(p)) {
+            if (isNaN(i)) i = p / v;
+            if (isNaN(r)) r = (v * v) / p;
+        }
+        // Case D: Solve using Current and Resistance
+        if (!isNaN(i) && !isNaN(r)) {
+            if (isNaN(v)) v = i * r;
+            if (isNaN(p)) p = (i * i) * r;
+        }
+        // Case E: Solve using Current and Power
+        if (!isNaN(i) && !isNaN(p)) {
+            if (isNaN(v)) v = p / i;
+            if (isNaN(r)) r = p / (i * i);
+        }
+        // Case F: Solve using Resistance and Power
+        if (!isNaN(r) && !isNaN(p)) {
+            if (isNaN(v)) v = Math.sqrt(p * r);
+            if (isNaN(i)) i = Math.sqrt(p / r);
+        }
+    }
+
+    // 4. Inject final calculations to the Viewport UI
+    document.getElementById('out-ohms-v').textContent = v.toFixed(2);
+    document.getElementById('out-ohms-i').textContent = i.toFixed(2);
+    document.getElementById('out-ohms-r').textContent = r.toFixed(2);
+    document.getElementById('out-ohms-p').textContent = p.toFixed(2);
+
+    // Reveal UI container block
+    document.getElementById('ohms-results').classList.remove('hidden');
+});
