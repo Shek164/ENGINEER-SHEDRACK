@@ -1,99 +1,42 @@
-# ENGINEER-SHEDRACK
-# 👨‍💻 Shedrack Waema Portfolio
+markdown# 👨‍💻 Shedrack Waema | Electrical Engineer & Software Developer
 
-Welcome to my personal portfolio website.
+[![Live Website](https://shields.io)](https://github.io)
+[![License](https://shields.io)](LICENSE)
 
-This website showcases my background, skills, experience, and projects as an **Electrical Engineer** and **Software Developer**.
+Welcome to my professional engineering and software portfolio. I specialize in bridging the gap between physical power distribution systems and modern software logic, creating scalable solutions for real-world automation challenges.
 
----
-
-## 🚀 Live Website
-
-view live demo
-
-https://shek164.github.io/Gilton1/
+📍 Based in Chuka Town, Kenya | 📧 shedrackwaema355@gmail.com
+📍 via whatsapp +254743551445
 
 ---
 
-## 👤 About Me
+## 🚀 Core Competencies
 
-My name is **Shedrack Waema**.
+### ⚡ Electrical Engineering
+* **Power Distribution:** Low/Medium voltage grid installation, load balancing, and network troubleshooting.
+* **Industrial Safety:** Strict adherence to occupational health standards (trained at Kenya Power).
+* **Control Systems:** Automation schematics, circuit board testing, and hardware prototyping.
 
-I am an Electrical Engineer and Software Developer with a passion for modern technology, software development, automation, and power systems. I enjoy solving real-world problems by combining engineering principles with modern software solutions.
+### 💻 Software Development
+* **Frontend Web Systems:** Highly responsive, semantic layouts using clean HTML5, CSS3, and modern vanilla JavaScript.
+* **DevOps & Tracking:** Continuous version control, repository tracking, and deployment management using Git/GitHub.
+
+---
+
+## 💼 Professional Experience
+
+### **Kenya Power** 
+*Role: Industrial Attachment / Internship*
+* Worked directly with field engineers to maintain regional power distribution networks.
+* Conducted scheduled troubleshooting, commercial installations, and structural equipment diagnostic checks safely.
 
 ---
 
 ## 🎓 Education
-
-- Bachelor of Science in Electrical Engineering – Chuka University
-- Diploma in Electrical Engineering – Chuka Technical and Vocational College (TVC)
-
----
-
-## 💼 Experience
-
-### Kenya Power
-
-- Industrial Attachment
-- Internship
-
-Worked with engineers on electrical installation, maintenance, troubleshooting, safety procedures, and power distribution systems.
+* **Bachelor of Science in Electrical Engineering** — Chuka University
+* **Diploma in Electrical Engineering** — Chuka Technical and Vocational College (TVC)
 
 ---
 
-## 🛠️ Skills
-
-- Electrical Engineering
-- Power Systems
-- Software Development
-- HTML5
-- CSS3
-- JavaScript
-- Git & GitHub
-- Problem Solving
-
----
-
-## 📂 Projects
-
-### Personal Portfolio
-
-A modern responsive portfolio website built using:
-
-- HTML5
-- CSS3
-- JavaScript
-
-More engineering and software projects will be added as they are completed.
-
----
-
-## 📧 Contact
-
-**Email:** shedrackwaema355@gmail.com
-
-**Phone:** +254 743 551445
-
-**GitHub:** https://github.com/Shek164
-
-**Location:** Chuka Town, Kenya
-
----
-
-## 🛠️ Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- Google Fonts
-- Font Awesome
-
----
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
----
-
-⭐ Thank you for visiting my portfolio! If you like my work, feel free to star this repository and connect with me on GitHub.
+## 🛠️ Upcoming Integration
+I am currently writing a dynamic, JavaScript-powered web application embedded directly into my portfol
