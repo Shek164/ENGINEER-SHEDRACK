@@ -318,6 +318,45 @@ design, troubleshooting and automation.
 </section>
 <!-- END OF ELECTRICAL CALCULATOR COMPONENT -->
 
+<!-- START OF OHMS LAW MODULE -->
+<section id="ohms-law" class="calculator-container">
+    <h3>📐 Dynamic Ohm's Law & Power Matrix Calculator</h3>
+    <p>Enter any <strong>two known parameters</strong> to instantly solve for the remaining values across the fundamental circuit network matrix ($V = I \times R$ | $P = V \times I$).</p>
+    
+    <div class="calc-grid">
+        <div class="input-group">
+            <label for="ohms-v">Voltage (V - Volts):</label>
+            <input type="number" id="ohms-v" placeholder="Leave blank to solve" min="0.01" step="0.01">
+        </div>
+        
+        <div class="input-group">
+            <label for="ohms-i">Current (I - Amperes):</label>
+            <input type="number" id="ohms-i" placeholder="Leave blank to solve" min="0.01" step="0.01">
+        </div>
+        
+        <div class="input-group">
+            <label for="ohms-r">Resistance (R - Ohms):</label>
+            <input type="number" id="ohms-r" placeholder="Leave blank to solve" min="0.01" step="0.01">
+        </div>
+
+        <div class="input-group">
+            <label for="ohms-p">Power (P - Watts):</label>
+            <input type="number" id="ohms-p" placeholder="Leave blank to solve" min="0.01" step="0.01">
+        </div>
+    </div>
+
+    <button id="ohms-calculate-btn">Compute Circuit Matrix</button>
+
+    <div id="ohms-results" class="results-box hidden">
+        <h4>📋 Calculated Electrical Values</h4>
+        <p>Voltage (V): <strong><span id="out-ohms-v">0.00</span> V</strong></p>
+        <p>Current (I): <strong><span id="out-ohms-i">0.00</span> A</strong></p>
+        <p>Resistance (R): <strong><span id="out-ohms-r">0.00</span> Ω</strong></p>
+        <p>Power (P): <strong><span id="out-ohms-p">0.00</span> W</strong></p>
+    </div>
+</section>
+<!-- END OF OHMS LAW MODULE -->
+
 <p>
 
 Engineering and software projects coming soon.
