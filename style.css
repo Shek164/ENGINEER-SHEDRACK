@@ -1,6 +1,9 @@
 /* ===========================
    SHEDRACK WAEMA PORTFOLIO
 =========================== */
+html {
+    scroll-behavior: smooth;
+}
 
 *{
     margin:0;
