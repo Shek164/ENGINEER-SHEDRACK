@@ -302,3 +302,4 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
     // Reveal results display element
     document.getElementById('calc-results').classList.remove('hidden');
 });
+"Add core logic for Cable Calculator"
