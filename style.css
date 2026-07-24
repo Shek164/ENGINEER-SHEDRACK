@@ -625,3 +625,37 @@ right:0;
     font-size: 16px;
 }
 .hidden { display: none !important; }
+/* --- TELEMETRY DASHBOARD DESIGN STYLES --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.dash-card {
+    background: #1e293b;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #334155;
+}
+.dash-card h5 {
+    margin: 0 0 10px 0;
+    color: #94a3b8;
+    font-size: 14px;
+}
+.dash-metric {
+    font-size: 24px;
+    font-weight: bold;
+    color: #38bdf8;
+    font-family: monospace;
+}
+.dash-badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.status-closed { background-color: #065f46; color: #34d399; }
+.status-tripped { background-color: #991b1b; color: #f87171; }
