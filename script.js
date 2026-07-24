@@ -416,3 +416,25 @@ document.getElementById('ohms-calculate-btn').addEventListener('click', function
     // Reveal UI container block
     document.getElementById('ohms-results').classList.remove('hidden');
 });
+// --- POWER FACTOR CORRECTION MOTOR ---
+document.getElementById('pf-calculate-btn').addEventListener('click', function() {
+    const kw = parseFloat(document.getElementById('pf-kw').value);
+    const pf1 = parseFloat(document.getElementById('pf-initial').value);
+    const pf2 = parseFloat(document.getElementById('pf-target').value);
+
+    if (isNaN(kw) || isNaN(pf1) || isNaN(pf2) || kw <= 0 || pf1 <= 0 || pf1 >= 1 || pf2 <= 0 || pf2 > 1) {
+        alert("🚨 Input Error: Ensure Power Factor parameters sit safely strictly between 0 and 1.");
+        return;
+    }
+
+    // Trigonometric Engineering Calculations: QC = P * (tan(acos(PF1)) - tan(acos(PF2)))
+    const angle1 = Math.acos(pf1);
+    const angle2 = Math.acos(pf2);
+    
+    const kvarRequired = kw * (Math.tan(angle1) - Math.tan(angle2));
+
+    document.getElementById('out-kvar').textContent = kvarRequired.toFixed(2);
+    document.getElementById('out-angle1').textContent = (angle1 * (180 / Math.PI)).toFixed(1);
+    document.getElementById('out-angle2').textContent = (angle2 * (180 / Math.PI)).toFixed(1);
+    document.getElementById('pf-results').classList.remove('hidden');
+});
