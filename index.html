@@ -474,6 +474,39 @@ Send Message
     <img src="https://seeyoufarm.com" alt="Live Profile Tracker Badge" />
 </div>
 
+<!-- START OF THREE-PHASE LOAD BALANCER ENGINE -->
+<section id="phase-balancer" class="calculator-container">
+    <h3>📊 Three-Phase Neutral Current & Imbalance Analyzer</h3>
+    <p>Analyze vector distribution across Phase A, B, and C lines to calculate resultant Neutral Current ($I_n$) and evaluate local transformer thermal stress constraints.</p>
+    
+    <div class="calc-grid">
+        <div class="input-group">
+            <label for="current-ia">Phase A Current ($I_a$) Amps:</label>
+            <input type="number" id="current-ia" placeholder="e.g., 45" min="0" step="0.1">
+        </div>
+        
+        <div class="input-group">
+            <label for="current-ib">Phase B Current ($I_b$) Amps:</label>
+            <input type="number" id="current-ib" placeholder="e.g., 40" min="0" step="0.1">
+        </div>
+        
+        <div class="input-group">
+            <label for="current-ic">Phase C Current ($I_c$) Amps:</label>
+            <input type="number" id="current-ic" placeholder="e.g., 38" min="0" step="0.1">
+        </div>
+    </div>
+
+    <button id="balancer-calculate-btn">Analyze Phase Balance</button>
+
+    <div id="balancer-results" class="results-box hidden">
+        <h4>📋 Grid Vector Analysis Output</h4>
+        <p>Resultant Neutral Wire Current ($I_n$): <strong id="out-neutral-current">0.00</strong> A</p>
+        <p>Maximum Line Current Deviation: <strong id="out-max-deviation">0.00</strong> A</p>
+        <p>Grid Stability Status: <strong id="out-balancer-status">STABLE</strong></p>
+    </div>
+</section>
+<!-- END OF THREE-PHASE LOAD BALANCER ENGINE -->
+
 
 </footer>
 
