@@ -334,7 +334,11 @@ document.getElementById('calculate-btn').addEventListener('click', function( con
     }
 
     // Remove fallback utility classes to render findings instantly viewable
-    resultsContainer.classList.remove('hidden');
+    resultsContainer.classList.remove('hidden');  } catch (runtimeError) {
+        console.error("🚨 Critical System Runtime Exception Intercepted: ", runtimeError);
+        alert("An unexpected exception occurred during calculations. Engineering logs have registered this instance.");
+    }
+
 });
 
 "Add core logic for Cable Calculator"
