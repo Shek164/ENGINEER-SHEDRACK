@@ -582,3 +582,47 @@ document.getElementById('balancer-calculate-btn').addEventListener('click', func
     // Unhide output screen container box element nodes
     document.getElementById('balancer-results').classList.remove('hidden');
 });
+// =========================================================================
+// 🔋 SOLAR BATTERY STORAGE & AUTONOMY CALCULATOR ENGINE
+// =========================================================================
+document.getElementById('battery-calculate-btn').addEventListener('click', function() {
+    // 1. Gather input parameters
+    const totalWh = parseFloat(document.getElementById('bat-load').value);
+    const autonomyDays = parseFloat(document.getElementById('bat-autonomy').value);
+    const chemistry = document.getElementById('bat-chemistry').value;
+
+    // Guard constraint verification
+    if (isNaN(totalWh) || isNaN(autonomyDays) || totalWh <= 0 || autonomyDays <= 0) {
+        alert("🚨 Input Error: Please provide valid positive numeric values for load demand and backup days.");
+        return;
+    }
+
+    // 2. Determine Depth of Discharge (DoD) based on selected battery chemistry
+    // Lead-Acid/GEL should not exceed 50% drain, while Lithium handles 80% safely
+    const depthOfDischarge = (chemistry === 'gel') ? 0.50 : 0.80;
+    const nominalBankVoltage = 24; // Standard off-grid distribution voltage reference
+
+    // 3. Complete Storage Math Formulations
+    const grossWhStorageRequired = (totalWh * autonomyDays) / depthOfDischarge;
+    const totalBankAhCapacity = grossWhStorageRequired / nominalBankVoltage;
+
+    // 4. Inject calculations to viewport DOM elements
+    const outTotalWh = document.getElementById('out-total-wh');
+    const outBankAh = document.getElementById('out-bank-ah');
+    const outStatus = document.getElementById('out-battery-health-status');
+
+    outTotalWh.textContent = grossWhStorageRequired.toFixed(1);
+    outBankAh.textContent = totalBankAhCapacity.toFixed(1);
+
+    // 5. Present dynamic system metrics
+    if (chemistry === 'gel') {
+        outStatus.textContent = "🛡️ Safety Margin Factored (50% Lead-Acid DoD Safeguard active)";
+        outStatus.style.color = "#0070f3";
+    } else {
+        outStatus.textContent = "🚀 High-Efficiency Performance Profile (80% Lithium DoD active)";
+        outStatus.style.color = "#10b981";
+    }
+
+    // Reveal output results block container
+    document.getElementById('battery-results').classList.remove('hidden');
+});
