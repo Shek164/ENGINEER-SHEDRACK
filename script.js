@@ -258,7 +258,7 @@ nav.classList.remove("active");
  * =========================================================================
  */
 
-document.getElementById('calculate-btn').addEventListener('click', function() {
+document.getElementById('calculate-btn').addEventListener('click', function( console.log("📟 Sizing calculations processed successfully.");) {
     
     // 1. DOM Input Elements Scrape & Sanitization
     const kwInput = document.getElementById('load-power');
