@@ -531,3 +531,54 @@ allTargetInputElements.forEach(elementNode => {
 
 // Initialize automatic state recovery sequence immediately when the DOM tree mounts live
 document.addEventListener('DOMContentLoaded', recoverEngineeringStateFromCache);
+// =========================================================================
+// 📊 THREE-PHASE LOAD VECTOR BALANCER ENGINE
+// =========================================================================
+document.getElementById('balancer-calculate-btn').addEventListener('click', function() {
+    // 1. Scraping and parsing current vector inputs
+    const ia = parseFloat(document.getElementById('current-ia').value);
+    const ib = parseFloat(document.getElementById('current-ib').value);
+    const ic = parseFloat(document.getElementById('current-ic').value);
+
+    // Guard fallback constraint verification
+    if (isNaN(ia) || isNaN(ib) || isNaN(ic) || ia < 0 || ib < 0 || ic < 0) {
+        alert("🚨 Engineering Input Constraint: Please enter valid positive numeric current values for all three phases.");
+        return;
+    }
+
+    // 2. Complex Three-Phase Vector Math Execution
+    // Standard trigonometric displacement equation components simplified for 120-degree shifts:
+    const neutralCurrentSquared = (ia * ia) + (ib * ib) + (ic * ic) - ((ia * ib) + (ib * ic) + (ic * ia));
+    
+    // Guard against microscopic floating point rounding calculation artifacts drops below absolute zero
+    const resultantNeutralCurrent = neutralCurrentSquared > 0 ? Math.sqrt(neutralCurrentSquared) : 0;
+
+    // 3. Grid Imbalance Threshold Math Check
+    const currentsArray = [ia, ib, ic];
+    const maxLineCurrent = Math.max(...currentsArray);
+    const minLineCurrent = Math.min(...currentsArray);
+    const deviation = maxLineCurrent - minLineCurrent;
+
+    // 4. Update the Dashboard Interface Nodes
+    const outNeutral = document.getElementById('out-neutral-current');
+    const outDeviation = document.getElementById('out-max-deviation');
+    const outStatus = document.getElementById('out-balancer-status');
+
+    outNeutral.textContent = resultantNeutralCurrent.toFixed(2);
+    outDeviation.textContent = deviation.toFixed(2);
+
+    // 5. System Flag Evaluation Warning Matrix
+    // If neutral current climbs past 15 Amperes, trigger an active phase imbalance warning
+    if (resultantNeutralCurrent > 15.00) {
+        outStatus.textContent = "⚠️ UNBALANCED / HIGH THERMAL STRESS";
+        outStatus.style.color = "#ef4444"; // Alarm Warning Alert Red
+        outNeutral.style.color = "#ef4444";
+    } else {
+        outStatus.textContent = "✅ OPTIMIZED SYSTEM LOAD BALANCE";
+        outStatus.style.color = "#10b981"; // Stable Clean Green 
+        outNeutral.style.color = "#1e293b";
+    }
+
+    // Unhide output screen container box element nodes
+    document.getElementById('balancer-results').classList.remove('hidden');
+});
