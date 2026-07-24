@@ -476,3 +476,4 @@ document.getElementById('toggle-breaker-btn').addEventListener('click', function
         document.getElementById('dash-hz').textContent = "0.00";
     }
 });
+"Connect Power Factor calculations and active IoT background simulator engine"
