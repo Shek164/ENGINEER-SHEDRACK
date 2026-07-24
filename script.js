@@ -477,3 +477,57 @@ document.getElementById('toggle-breaker-btn').addEventListener('click', function
     }
 });
 "Connect Power Factor calculations and active IoT background simulator engine"
+// =========================================================================
+// 💾 PRODUCTION DATA PERSISTENCE COMPONENT (LOCALSTORAGE SYSTEM)
+// Architecture: Automated State Recovery Lifecycle
+// =========================================================================
+
+// Function to securely pack and cache current input parameters into browser memory
+function saveEngineeringStateToCache() {
+    const statePayload = {
+        loadPower: document.getElementById('load-power').value,
+        routeLength: document.getElementById('route-length').value,
+        phaseType: document.getElementById('phase-type').value,
+        pfKw: document.getElementById('pf-kw').value,
+        pfInitial: document.getElementById('pf-initial').value,
+        pfTarget: document.getElementById('pf-target').value
+    };
+    
+    // Convert object payload to JSON string and store securely in local storage node
+    localStorage.setItem('shedrack_toolkit_state', JSON.stringify(statePayload));
+}
+
+// Function to scan, unpack, and populate cached variables back into DOM nodes upon launch
+function recoverEngineeringStateFromCache() {
+    const serializedData = localStorage.getItem('shedrack_toolkit_state');
+    
+    if (!serializedData) return; // Terminate execution gracefully if cache node is empty
+    
+    try {
+        const decodedState = JSON.parse(serializedData);
+        
+        // Re-populate Cable sizing parameters
+        if (decodedState.loadPower) document.getElementById('load-power').value = decodedState.loadPower;
+        if (decodedState.routeLength) document.getElementById('route-length').value = decodedState.routeLength;
+        if (decodedState.phaseType) document.getElementById('phase-type').value = decodedState.phaseType;
+        
+        // Re-populate Power Factor parameters
+        if (decodedState.pfKw) document.getElementById('pf-kw').value = decodedState.pfKw;
+        if (decodedState.pfInitial) document.getElementById('pf-initial').value = decodedState.pfInitial;
+        if (decodedState.pfTarget) document.getElementById('pf-target').value = decodedState.pfTarget;
+        
+        console.log("⚡ [Shedrack Engine Hub]: Application state payload recovered from localStorage successfully.");
+    } catch (error) {
+        console.error("🚨 Error processing cached state string reconstruction:", error);
+    }
+}
+
+// Attach event listeners to all input form elements to save data automatically as the user changes inputs
+const allTargetInputElements = document.querySelectorAll('.input-group input, .input-group select');
+allTargetInputElements.forEach(elementNode => {
+    elementNode.addEventListener('input', saveEngineeringStateToCache);
+    elementNode.addEventListener('change', saveEngineeringStateToCache);
+});
+
+// Initialize automatic state recovery sequence immediately when the DOM tree mounts live
+document.addEventListener('DOMContentLoaded', recoverEngineeringStateFromCache);
