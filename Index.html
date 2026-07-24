@@ -374,6 +374,35 @@ Engineering and software projects coming soon.
 
 
 </section>
+    <section id="power-factor" class="calculator-container">
+    <h3>📉 AC Power Factor Correction Engine</h3>
+    <p>Calculate the required industrial capacitor bank rating (kVAR) to optimize system efficiency and eliminate utility reactive power penalties.</p>
+    
+    <div class="calc-grid">
+        <div class="input-group">
+            <label for="pf-kw">Active Power (kW):</label>
+            <input type="number" id="pf-kw" placeholder="e.g., 50" min="0.1" step="0.1">
+        </div>
+        <div class="input-group">
+            <label for="pf-initial">Initial Power Factor ($\cos \theta_1$):</label>
+            <input type="number" id="pf-initial" placeholder="e.g., 0.70" min="0.1" max="0.99" step="0.01">
+        </div>
+        <div class="input-group">
+            <label for="pf-target">Target Power Factor ($\cos \theta_2$):</label>
+            <input type="number" id="pf-target" value="0.95" min="0.8" max="1.0" step="0.01">
+        </div>
+    </div>
+
+    <button id="pf-calculate-btn">Compute Capacitor Matrix</button>
+
+    <div id="pf-results" class="results-box hidden">
+        <h4>📋 Power Quality Blueprint</h4>
+        <p>Required Capacitor Bank Rating: <strong id="out-kvar">0.00</strong> kVAR</p>
+        <p>Initial Phase Angle ($\theta_1$): <span id="out-angle1">0.0</span>°</p>
+        <p>Target Phase Angle ($\theta_2$): <span id="out-angle2">0.0</span>°</p>
+    </div>
+</section>
+
 
 <footer>
 
