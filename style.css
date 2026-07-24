@@ -659,3 +659,19 @@ right:0;
 }
 .status-closed { background-color: #065f46; color: #34d399; }
 .status-tripped { background-color: #991b1b; color: #f87171; }
+/* --- VISIBLE VISITOR BADGE VIEW STYLES --- */
+.visitor-counter-wrapper {
+    text-align: center;
+    margin: 30px auto 10px auto;
+    padding: 15px;
+    max-width: 300px;
+    font-family: inherit;
+}
+.visitor-counter-wrapper p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
