@@ -509,6 +509,41 @@ Send Message
 </section>
 <!-- END OF THREE-PHASE LOAD BALANCER ENGINE -->
 
+<!-- START OF SOLAR BATTERY AUTONOMY OPTIMIZER -->
+<section id="battery-optimizer" class="calculator-container">
+    <h3>🔋 Solar Battery Storage Capacity & Autonomy Optimizer</h3>
+    <p>Optimize battery bank sizing parameters based on daily watt-hour demands, target days of autonomy, and chemistry-specific Depth of Discharge (DoD) profiles.</p>
+    
+    <div class="calc-grid">
+        <div class="input-group">
+            <label for="bat-load">Daily DC Load Demand (Wh):</label>
+            <input type="number" id="bat-load" placeholder="e.g., 2400" min="1" step="10">
+        </div>
+        
+        <div class="input-group">
+            <label for="bat-autonomy">Required Autonomy (Days):</label>
+            <input type="number" id="bat-autonomy" placeholder="e.g., 2" min="1" max="5" step="1" value="2">
+        </div>
+        
+        <div class="input-group">
+            <label for="bat-chemistry">Battery Chemistry Type:</label>
+            <select id="bat-chemistry">
+                <option value="gel">Sealed Lead-Acid / GEL (50% DoD Max)</option>
+                <option value="lithium">Lithium Iron Phosphate / LiFePO4 (80% DoD Max)</option>
+            </select>
+        </div>
+    </div>
+
+    <button id="battery-calculate-btn">Compute Battery Storage</button>
+
+    <div id="battery-results" class="results-box hidden">
+        <h4>📋 Battery Bank Design Specifications</h4>
+        <p>Total Required Storage Capacity: <strong id="out-total-wh">0.00</strong> Wh</p>
+        <p>Recommended 24V Bank Capacity: <strong id="out-bank-ah">0.00</strong> Ah</p>
+        <p>Lifespan Protection Status: <strong id="out-battery-health-status">OPTIMIZED</strong></p>
+    </div>
+</section>
+<!-- END OF SOLAR BATTERY AUTONOMY OPTIMIZER -->
 
 </footer>
 
