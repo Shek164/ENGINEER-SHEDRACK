@@ -290,38 +290,25 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
     }
 
     // 4. Standard Copper Cable Cross-Section Reference Matrix (BS 7671 Regulations)
-    // Structure: [Conductor Area in mm², Max Allowable Continuous Amperage Capacity]
-    const standardCableMatrix = [
-        [1.5, 16],   // Index 0
-        [2.5, 22],   // Index 1
-        [4.0, 30],   // Index 2
-        [6.0, 38],   // Index 3
-        [10.0, 52],  // Index 4
-        [16.0, 69],  // Index 5
-        [25.0, 91],  // Index 6
-        [35.0, 111], // Index 7
-        [50.0, 133], // Index 8
-        [70.0, 169], // Index 9
-        [95.0, 205], // Index 10
-        [120.0, 237] // Index 11
-    ];
+    // Structure: [Conductor Area in mm², Max Allowable Continuous Amperage Capacitor)
+    
+    // Optimized Key-Value Map Definition: Area Key (mm²) => Continuous Current Capacity Limit (Amps)
+    const safeCableCapacityMap = new Map([
+        [1.5, 16], [2.5, 22], [4.0, 30], [6.0, 38], [10.0, 52],
+        [16.0, 69], [25.0, 91], [35.0, 111], [50.0, 133], [70.0, 169],
+        [95.0, 205], [120.0, 237]
+    ]);
 
-    // 5. Explicit Nested Element Search Loop
-    // Resolves previous parsing bug by directly targeting index properties
-    let recommendedCableSize = 120.0; // Default fallback to absolute maximum matrix bounds
-    let sizeFound = false;
+    // Efficiently locate the smallest compliant conductor size using an iterator loop
+    let recommendedCableSize = 120.0; // Fail-safe default set to global maximum safety limit
 
-    for (let i = 0; i < standardCableMatrix.length; i++) {
-        let areaSlot = standardCableMatrix[i][0];       // Extracts mm² value
-        let currentCapacitySlot = standardCableMatrix[i][1]; // Extracts Maximum Safe Amperage
-
-        if (currentCapacitySlot >= designCurrent) {
-            recommendedCableSize = areaSlot;
-            sizeFound = true;
-            break; // Terminate execution cycle immediately once safety bounds are matched
+    for (const [conductorArea, currentLimit] of safeCableCapacityMap.entries()) {
+        if (currentLimit >= designCurrent) {
+            recommendedCableSize = conductorArea;
+            break; // Immediately exit the execution thread once compliance limits match
         }
     }
-
+    
     // 6. Voltage Drop (Vd) Calculation Framework
     // Evaluates millivolt per Ampere per meter parameter (mV/A/m approach)
     let mvAm = 4.4; // Average factor representation for copper resistance
