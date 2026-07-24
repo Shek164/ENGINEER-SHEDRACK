@@ -438,3 +438,41 @@ document.getElementById('pf-calculate-btn').addEventListener('click', function()
     document.getElementById('out-angle2').textContent = (angle2 * (180 / Math.PI)).toFixed(1);
     document.getElementById('pf-results').classList.remove('hidden');
 });
+// --- SIMULATED SCADA/TELEMETRY STREAM ENGINE ---
+let breakerClosed = true;
+
+setInterval(() => {
+    if (!breakerClosed) return; // Freeze metrics if breaker trips
+
+    // Inject microscopic real-world grid oscillations (+/- small values)
+    const baseV = 240 + (Math.random() * 4 - 2);
+    const baseKW = 12 + (Math.random() * 6);
+    const baseHZ = 50 + (Math.random() * 0.1 - 0.05);
+
+    document.getElementById('dash-v1').textContent = baseV.toFixed(1);
+    document.getElementById('dash-kw').textContent = baseKW.toFixed(1);
+    document.getElementById('dash-hz').textContent = baseHZ.toFixed(2);
+}, 2500); // Refreshes every 2.5 seconds to mimic an active network socket connection
+
+// Emergency Trip Handler
+document.getElementById('toggle-breaker-btn').addEventListener('click', function() {
+    breakerClosed = !breakerClosed;
+    const badge = document.getElementById('dash-status');
+    
+    if (breakerClosed) {
+        badge.textContent = "CLOSED / SAFE";
+        badge.className = "dash-badge status-closed";
+        this.textContent = "Emergency Trip Breaker";
+        this.style.backgroundColor = "#ef4444";
+    } else {
+        badge.textContent = "TRIPPED / ALARM";
+        badge.className = "dash-badge status-tripped";
+        this.textContent = "Reset Network Breaker";
+        this.style.backgroundColor = "#10b981";
+        
+        // Zero metrics instantly upon breaker mechanical separation
+        document.getElementById('dash-v1').textContent = "0.0";
+        document.getElementById('dash-kw').textContent = "0.0";
+        document.getElementById('dash-hz').textContent = "0.00";
+    }
+});
