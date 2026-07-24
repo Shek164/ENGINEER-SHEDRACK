@@ -1,4 +1,5 @@
-markdown# 👨‍💻 Shedrack Waema | Electrical Engineer & Software Developer
+markdown
+# 👨‍💻 Shedrack Waema | Electrical Engineer & Software Developer
 
 [![Live Website](https://shields.io)](https://github.io)
 [![License](https://shields.io)](LICENSE)
