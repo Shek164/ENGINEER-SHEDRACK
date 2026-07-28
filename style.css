@@ -11,6 +11,15 @@ html {
     box-sizing:border-box;
     font-family:'Poppins',sans-serif;
     scroll-behavior:smooth;
+   @font-face {
+  font-family: 'PremiumFont';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/premium-font.woff2') format('woff2');
+  
+  font-display: swap; 
+}
+
 }
 
 body{
