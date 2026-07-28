@@ -2,63 +2,26 @@
 <html lang="en">
 
 <head>
-<meta name="google-site-verification" content="YtEfx6UEjLxeRQ4QkT3HeL40GG6gHZwV_11sF80S7F8" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Premium Optimized Website</title>
 
-<title>Shedrack Waema | Electrical Engineer & Software Developer</title>
-    
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- STEP A: Speed up 3rd-party connections (Fonts, Analytics, CDNs) -->
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
 
-<meta name="description"
-content="Official Portfolio of Shedrack Waema">
+  <!-- STEP B: Inline Critical CSS (Styles needed to show the very top of your page) -->
+  <style>
+    /* Paste only critical code here: body background, layout structure, header height */
+    body { margin: 0; font-family: sans-serif; background: #fff; color: #111; }
+    .header { height: 70px; display: flex; align-items: center; }
+  </style>
 
-<link rel="stylesheet" href="style.css">
+  <!-- STEP C: Load Non-Critical CSS Asynchronously (Trick the browser to not block rendering) -->
+  <link rel="stylesheet" href="main-styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="main-styles.css"></noscript>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<link rel="canonical"
-href="https://shek164.github.io/ENGINEER-SHEDRACK/">
-
-<meta property="og:title" content="Shedrack Waema | Electrical Engineer & Software Developer">
-
-<meta property="og:description" content="Professional portfolio showcasing Electrical Engineering, Software Development, innovative projects, and technical skills.">
-
-<meta property="og:image" content="https://shek164.github.io/ENGINEER-SHEDRACK/profile.jpg">
-
-<meta property="og:type" content="website">
-
-<meta property="og:locale" content="en_US">
-
-<meta property="og:site_name" content="Shedrack Waema Portfolio">
-
-<!-- ADVANCED GOOGLE BOT OPTIMIZATION TAGS -->
-<meta name="robots" content="index, follow">
-<meta name="description" content="Shedrack Waema is an Electrical Engineer (Chuka University) and Software Developer. Backed by practical field operations training at Kenya Power, he specializes in designing advanced IoT grid telemetry systems and algorithmic web layouts. He leverages clean JavaScript to bridge the critical gaps between industrial hardware and automated software platforms.">
-<meta property="og:title" content="Shedrack Waema | Electrical Engineer & Software Automation Developer">
-<meta property="og:description" content="Electrical Engineer specializing in IoT grid telemetry dashboards and industrial automation utilities.">
-<meta property="og:url" content="https://github.io">
-<meta property="og:type" content="website">
-<meta name="keywords" content="Shedrack Waema, Electrical Engineer, Software Developer, Chuka University
-    
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Shedrack Waema">
-<meta name="twitter:description" content="Electrical Engineer & Software Developer">
-<meta name="twitter:image" content="profile.jpg">
-    
-<li><a href="#phase-balancer">📊 Phase Balancer</a></li>
-
-<li><a href="#battery-optimizer">🔋 Battery Optimizer</a></li>
-
- <script src="script.js" defer></script>
-
+  <!-- STEP D: Load Vital Java Scripts Non-Blocking (Downloads in background, runs at the end) -->
+  <script src="app.js" defer></script>
 </head>
 
 <body>
