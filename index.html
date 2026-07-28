@@ -11,8 +11,10 @@
 
   <!-- STEP B: Inline Critical CSS 
   <link rel="preload" href="/fonts/premium-font.woff2" as font type="font/woff2" crossorigin>
+  <!-- For a standard image file -->
+<link rel="preload" fetchpriority="high" as="image" href="/images/hero-banner.webp" type="image/webp">
+
   <style>
-    /* Paste only critical code here: body background, layout structure, header height */
     body { margin: 0; font-family: sans-serif; background: #fff; color: #111; }
     .header { height: 70px; display: flex; align-items: center; }
   </style>
