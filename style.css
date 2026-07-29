@@ -5,12 +5,6 @@ html {
     scroll-behavior: smooth;
 }
 
-@font-face {
-    font-family: "PremiumFont";
-    src: url("fonts/premium-font.woff2") format("woff2");
-    font-display: swap;
-}
-
 *{
     margin:0;
     padding:0;
