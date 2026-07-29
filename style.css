@@ -4,14 +4,11 @@
 html {
     scroll-behavior: smooth;
 }
-{
-    @font-face
-  font-family: 'PremiumFont';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/premium-font.woff2') format('woff2');
-  
-  font-display: swap; 
+
+@font-face {
+    font-family: "PremiumFont";
+    src: url("fonts/premium-font.woff2") format("woff2");
+    font-display: swap;
 }
 
 *{
