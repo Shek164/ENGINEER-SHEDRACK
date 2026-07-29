@@ -137,7 +137,11 @@ nav a:hover{
     color:#0f172a;
 }
 
-/* Profile Image */
+.profile-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
 
 .hero-image{
     flex:1;
