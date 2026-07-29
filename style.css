@@ -11,7 +11,8 @@ html {
     box-sizing:border-box;
     font-family:'Poppins',sans-serif;
     scroll-behavior:smooth;
-   @font-face {
+{
+    @font-face
   font-family: 'PremiumFont';
   font-style: normal;
   font-weight: 400;
