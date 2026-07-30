@@ -4,23 +4,12 @@
 html {
     scroll-behavior: smooth;
 }
-body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-    scroll-behavior:smooth;
-
-}
-
 body{
     background:#0f172a;
     color:#fff;
     line-height:1.7;
+    font-family:'Poppins',sans-serif;
+    margin:0;
 }
 
 /* Header */
