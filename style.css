@@ -401,23 +401,6 @@ grid-template-columns:1fr;
 
 }
 
-}
-/* ===== Loader ===== */
-
-#loader{
-    position: fixed;
-    inset: 0;
-    background: #0f172a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-
-    opacity: 1;
-    visibility: visible;
-    transition: opacity .6s ease, visibility .6s ease;
-}
-
 .spinner{
 
 width:70px;
