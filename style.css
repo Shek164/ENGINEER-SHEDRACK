@@ -148,14 +148,15 @@ nav a:hover{
     display:flex;
     justify-content:center;
 }
-
 .hero-image img{
-    width:360px;
-    height:360px;
-    object-fit:cover;
-    border-radius:50%;
-    border:6px solid #38bdf8;
-    box-shadow:0 0 35px rgba(56,189,248,.4);
+    display: block;
+    width: 360px;
+    height: 360px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid #38bdf8;
+    box-shadow: 0 0 35px rgba(56,189,248,.4);
 }
 
 /* Sections */
