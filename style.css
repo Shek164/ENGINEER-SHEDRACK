@@ -14,17 +14,17 @@ body{
 
 /* Header */
 
-header{
-    position:fixed;
-    top:0;
-    width:100%;
-    padding:20px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background: #0f172a;
-    backdrop-filter:blur(10px);
-    z-index:1000;
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #0f172a;   /* Solid background */
+    z-index: 1000;
 }
 
 .logo{
