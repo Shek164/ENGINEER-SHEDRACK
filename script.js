@@ -212,14 +212,15 @@ alert("Thank you for your message!");
 });
 /* ===== Loader ===== */
 
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
 
-setTimeout(()=>{
+    loader.style.opacity = "0";
+    loader.style.visibility = "hidden";
 
-document.getElementById("loader").style.display="none";
-
-},1200);
-
+    setTimeout(() => {
+        loader.remove();
+    }, 600);
 });
 
 /* ===== Mobile Menu ===== */
