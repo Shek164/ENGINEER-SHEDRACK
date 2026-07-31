@@ -290,7 +290,19 @@ color:#38bdf8;
 }
 
 /* Projects */
+.project img{
 
+width:100%;
+
+height:220px;
+
+aspect-ratio:16/9;
+
+object-fit:cover;
+
+display:block;
+
+}
 .project img{
 
 width:100%;
