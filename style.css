@@ -137,6 +137,12 @@ nav a.active {
     flex:1;
     display:flex;
     justify-content:center;
+    align-items:center;
+
+    width:400px;
+    height:400px;
+    min-width:400px;
+    min-height:400px;
 }
 .hero-image img{
     display: block;
